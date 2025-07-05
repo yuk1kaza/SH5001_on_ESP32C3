@@ -12,8 +12,8 @@
  * 3.3V   -->  VDD
  * GND    -->  GND
  * 
- * 作者：基于Senodia SH5001驱动修改
- * 日期：2024
+ * 作者：少司命  基于Senodia SH5001驱动修改
+ * 日期：2025/06/26 23:39
  */
 
 #include <Wire.h>
@@ -141,37 +141,42 @@ void loop() {
   // 计算姿态角
   SH5001_CalculateAttitude(&imu_data);
   
-  // 打印数据
-  // Serial.print("ACC: ");
-  // Serial.print(imu_data.acc_x_g, 3);
-  // Serial.print(", ");
-  // Serial.print(imu_data.acc_y_g, 3);
-  // Serial.print(", ");
-  // Serial.print(imu_data.acc_z_g, 3);
-  // Serial.print(" g  |  GYRO: ");
-  // Serial.print(imu_data.gyro_x_dps, 2);
-  // Serial.print(", ");
-  // Serial.print(imu_data.gyro_y_dps, 2);
-  // Serial.print(", ");
-  // Serial.print(imu_data.gyro_z_dps, 2);
-  // Serial.print(" °/s  |  rangle: ");
-  // Serial.print(imu_data.pitch, 2);
-  // Serial.print(", ");
-  // Serial.print(imu_data.roll, 2);
-  // Serial.print(", ");
-  // Serial.print(imu_data.yaw, 2);
-  // Serial.print(" °  |  TEMP: ");
-  // Serial.print(imu_data.temperature, 1);
-  // Serial.println(" °C");
-  Serial.print(imu_data.q[0], 4);
-  Serial.print(",");
-  Serial.print(imu_data.q[1], 4);
-  Serial.print(",");
-  Serial.print(imu_data.q[2], 4);
-  Serial.print(",");
-  Serial.print(imu_data.q[3], 4);
-  Serial.print("\n");
-  delay(10); // 100Hz输出频率
+  // 打印数据（此处默认输出原始数据，如需输出四元数，可自行修改注释代码部分）
+  
+  //以下为输出原始数据部分
+  Serial.print("ACC: ");
+  Serial.print(imu_data.acc_x_g, 3);
+  Serial.print(", ");
+  Serial.print(imu_data.acc_y_g, 3);
+  Serial.print(", ");
+  Serial.print(imu_data.acc_z_g, 3);
+  Serial.print(" g  |  GYRO: ");
+  Serial.print(imu_data.gyro_x_dps, 2);
+  Serial.print(", ");
+  Serial.print(imu_data.gyro_y_dps, 2);
+  Serial.print(", ");
+  Serial.print(imu_data.gyro_z_dps, 2);
+  Serial.print(" °/s  |  rangle: ");
+  Serial.print(imu_data.pitch, 2);
+  Serial.print(", ");
+  Serial.print(imu_data.roll, 2);
+  Serial.print(", ");
+  Serial.print(imu_data.yaw, 2);
+  Serial.print(" °  |  TEMP: ");
+  Serial.print(imu_data.temperature, 1);
+  Serial.println(" °C");
+
+  // 以下为输出四元数部分
+  // Serial.print(imu_data.q[0], 4);
+  // Serial.print(",");
+  // Serial.print(imu_data.q[1], 4);
+  // Serial.print(",");
+  // Serial.print(imu_data.q[2], 4);
+  // Serial.print(",");
+  // Serial.print(imu_data.q[3], 4);
+  // Serial.print("\n");
+  
+  delay(10); // 100Hz输出频率（可自行修改）
 }
 
 // 添加四元数归一化函数
